@@ -1,6 +1,6 @@
 {
   "appHost": {
-    "path": "TemplateApp.AppHost/TemplateApp.AppHost.csproj"
+    "path": "TemplateProjectPath.AppHost/TemplateProjectPath.AppHost.csproj"
   },
   "sdk": {
     "version": "17.0.0-preview.1.26522.1"

@@ -2,9 +2,9 @@
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.0.0
 MinimumVisualStudioVersion = 17.8.0.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateApp.AppHost", "TemplateApp.AppHost\TemplateApp.AppHost.csproj", "{EACCE87F-0ED4-4177-B885-2CB106F8F181}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateProjectPath.AppHost", "TemplateProjectPath.AppHost\TemplateProjectPath.AppHost.csproj", "{EACCE87F-0ED4-4177-B885-2CB106F8F181}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateApp.Server", "TemplateApp.Server\TemplateApp.Server.csproj", "{D2FAE152-1440-4845-9BF6-80F7710BEA29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateProjectPath.Server", "TemplateProjectPath.Server\TemplateProjectPath.Server.csproj", "{D2FAE152-1440-4845-9BF6-80F7710BEA29}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "frontend", "frontend\frontend.esproj", "{6CF3BA28-7711-4BF2-BAB0-CC78275DD8EF}"
 EndProject

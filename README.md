@@ -18,6 +18,11 @@ Choose the project name when prompted. This repository contains one template;
 there are no feature or version questions. Project directories, solution/project
 files, references, and the npm package name are renamed for the new app. npm names
 are lowercased and characters other than letters, digits, and hyphens become hyphens.
+Path references use an identity-transformed `TemplateProjectPath` token so names
+such as `custom-aspire` retain their hyphens. `sourceName: TemplateApp` handles
+file renaming and C#-safe replacements separately; do not use it in path strings.
+Instantiate the template before building; raw path tokens in the template source
+are replaced during generation.
 
 For a local clone, run from the directory where you want the new app:
 
@@ -92,3 +97,14 @@ aspire new aspire-ts-cs-starter --name TemplateApp --output .scaffold --suppress
 
 Source CLI: `17.0.0-preview.1.26520.10+ffe52b37fcf42c7d98c68b53d037b790d791de0a`.
 The CLI selected starter templates `17.0.0-preview.1.26522.1`.
+
+## Template regression check
+
+```bash
+node tests/template-generation.mjs
+```
+
+Uses an isolated .NET template hive and disposable generated apps to check
+`custom-aspire` and `Contoso.Inventory`: config, solution, AppHost and project
+reference paths, C# root namespaces, npm names, exclusions, and C# builds.
+It does not start services or provision Azure resources.

@@ -5,6 +5,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>TemplateApp.AppHost</RootNamespace>
     <AspireUseCliBundle>true</AspireUseCliBundle>
     <UserSecretsId>e0a50a92-7cc6-4da3-b5f7-3e4f1062b904</UserSecretsId>
   </PropertyGroup>

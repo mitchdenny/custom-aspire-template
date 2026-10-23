@@ -19,6 +19,12 @@
     "896CB161-433E-4117-A5DA-F55036607E8A"
   ],
   "symbols": {
+    "projectPath": {
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "identity",
+      "replaces": "TemplateProjectPath"
+    },
     "AspireVersion": {
       "type": "parameter",
       "datatype": "string",
@@ -56,6 +62,7 @@
             ".validation/**",
             ".template.config/**",
             "README.md",
+            "tests/**",
             "**/[Bb]in/**",
             "**/[Oo]bj*/**",
             "**/node_modules/**",

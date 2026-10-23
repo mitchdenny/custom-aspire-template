@@ -6,7 +6,7 @@ var blobs = builder.AddAzureStorage("storage")
     .RunAsEmulator()
     .AddBlobs("blobs");
 
-var server = builder.AddDotnetProject("server", "../TemplateApp.Server/TemplateApp.Server.csproj")
+var server = builder.AddDotnetProject("server", "../TemplateProjectPath.Server/TemplateProjectPath.Server.csproj")
     .WithReference(blobs)
     .WaitFor(blobs)
     .WithHttpHealthCheck("/health")
