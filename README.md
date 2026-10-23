@@ -18,9 +18,12 @@ Choose the project name when prompted. This repository contains one template;
 there are no feature or version questions. Project directories, solution/project
 files, references, and the npm package name are renamed for the new app. npm names
 are lowercased and characters other than letters, digits, and hyphens become hyphens.
-Path references use an identity-transformed `TemplateProjectPath` token so names
-such as `custom-aspire` retain their hyphens. `sourceName: TemplateApp` handles
-file renaming and C#-safe replacements separately; do not use it in path strings.
+Project files, directories, solution filenames, and path references use the
+standard .NET `safe_namespace` form: `custom-aspire` becomes `custom_aspire`,
+while `Contoso.Inventory` remains unchanged. The CLI-selected output directory
+is independent of this transform. `TemplateProjectPath` handles path content,
+`fileRename: TemplateApp` handles filenames, and `sourceName: TemplateNamespace`
+handles C#-safe namespace replacements.
 Instantiate the template before building; raw path tokens in the template source
 are replaced during generation.
 
@@ -85,9 +88,18 @@ the version in `aspire.config.json` and all Aspire package pins. Consumers are n
 prompted for it. Stock `dotnet new` uses the default unless explicitly overridden
 with `--AspireVersion`.
 
-The prerelease packages use the public .NET daily feed in `nuget.config`;
-other packages use nuget.org. A version injected by a different CLI must be
-available on the configured feeds and support the APIs used by this template.
+The template also declares `AspireNuGetSource`, defaulting to the public .NET
+daily feed at
+`https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet9/nuget/v3/index.json`.
+The custom CLI supplies its identity channel's actual package source through
+this opt-in parameter (matched case-insensitively), including PR package sources.
+The derived `aspireNuGetSourceXml` symbol chains the standard `xmlEncode` form
+with a quote-escaping `replace` form before inserting the raw URL or local
+directory into an XML attribute in `nuget.config`.
+The package source and source-mapping keys stay static and identical.
+Stock `dotnet new` can override this with `--AspireNuGetSource`.
+Other packages use nuget.org. Injected versions must be available on the supplied
+source and support the APIs used by this template.
 
 Original scaffold command:
 
@@ -107,4 +119,6 @@ node tests/template-generation.mjs
 Uses an isolated .NET template hive and disposable generated apps to check
 `custom-aspire` and `Contoso.Inventory`: config, solution, AppHost and project
 reference paths, C# root namespaces, npm names, exclusions, and C# builds.
+Also checks injected feed URLs and local directories containing ampersands and
+quotes are attribute-escaped without changing NuGet source/mapping keys.
 It does not start services or provision Azure resources.

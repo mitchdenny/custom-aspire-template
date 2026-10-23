@@ -5,7 +5,7 @@
   "identity": "MitchDenny.Aspire.React.Azure",
   "name": "Aspire C# + React with Azure Container Apps and Blob Storage",
   "shortName": "custom-aspire",
-  "sourceName": "TemplateApp",
+  "sourceName": "TemplateNamespace",
   "preferNameDirectory": true,
   "tags": {
     "language": "C#",
@@ -22,8 +22,21 @@
     "projectPath": {
       "type": "derived",
       "valueSource": "name",
-      "valueTransform": "identity",
-      "replaces": "TemplateProjectPath"
+      "valueTransform": "safe_namespace",
+      "replaces": "TemplateProjectPath",
+      "fileRename": "TemplateApp"
+    },
+    "AspireNuGetSource": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet9/nuget/v3/index.json",
+      "description": "Aspire package source, supplied by the Aspire CLI."
+    },
+    "aspireNuGetSourceXml": {
+      "type": "derived",
+      "valueSource": "AspireNuGetSource",
+      "valueTransform": "xmlAttribute",
+      "replaces": "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet9/nuget/v3/index.json"
     },
     "AspireVersion": {
       "type": "parameter",
@@ -40,6 +53,15 @@
     }
   },
   "forms": {
+    "xmlQuotes": {
+      "identifier": "replace",
+      "pattern": "\"",
+      "replacement": "&quot;"
+    },
+    "xmlAttribute": {
+      "identifier": "chain",
+      "steps": ["xmlEncode", "xmlQuotes"]
+    },
     "npmCharacters": {
       "identifier": "replace",
       "pattern": "[^a-zA-Z0-9-]",
