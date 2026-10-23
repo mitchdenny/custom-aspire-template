@@ -1,0 +1,17 @@
+**/bin/
+**/obj*/
+**/node_modules/
+**/dist/
+**/.aspire/
+**/.azure/
+.scaffold/
+.validation/
+.vs/
+.idea/
+.DS_Store
+*.user
+*.suo
+*.log
+.env
+.env.*
+!.env.example

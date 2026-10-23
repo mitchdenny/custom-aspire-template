@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "mitchdenny",
+  "classifications": ["Aspire", "Web", "React", "Azure"],
+  "identity": "MitchDenny.Aspire.React.Azure",
+  "name": "Aspire C# + React with Azure Container Apps and Blob Storage",
+  "shortName": "custom-aspire",
+  "sourceName": "TemplateApp",
+  "preferNameDirectory": true,
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "guids": [
+    "e0a50a92-7cc6-4da3-b5f7-3e4f1062b904",
+    "EACCE87F-0ED4-4177-B885-2CB106F8F181",
+    "D2FAE152-1440-4845-9BF6-80F7710BEA29",
+    "6CF3BA28-7711-4BF2-BAB0-CC78275DD8EF",
+    "896CB161-433E-4117-A5DA-F55036607E8A"
+  ],
+  "symbols": {
+    "AspireVersion": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "17.0.0-preview.1.26522.1",
+      "replaces": "17.0.0-preview.1.26522.1",
+      "description": "Aspire SDK and integration version, supplied by the Aspire CLI."
+    },
+    "npmName": {
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "npmName",
+      "replaces": "templateapp"
+    }
+  },
+  "forms": {
+    "npmCharacters": {
+      "identifier": "replace",
+      "pattern": "[^a-zA-Z0-9-]",
+      "replacement": "-"
+    },
+    "npmName": {
+      "identifier": "chain",
+      "steps": ["npmCharacters", "lowerCase"]
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            ".git",
+            ".git/**",
+            ".github/**",
+            ".scaffold/**",
+            ".validation/**",
+            ".template.config/**",
+            "README.md",
+            "**/[Bb]in/**",
+            "**/[Oo]bj*/**",
+            "**/node_modules/**",
+            "**/dist/**",
+            "**/.aspire/**",
+            "**/.azure/**",
+            "**/.vs/**",
+            "**/.idea/**",
+            "**/.DS_Store",
+            "**/*.user",
+            "**/*.suo",
+            "**/*.log",
+            "**/.env",
+            "**/.env.*",
+            "**/secrets.json"
+          ]
+        }
+      ]
+    }
+  ]
+}
